@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head></h:head>
@@ -11,6 +12,70 @@
 <ui:composition template="/templates/maintemplate.xhtml">
 <ui:define name="title"> Hoşgeldiniz</ui:define>
 <ui:define name="content">
+
+
+<div class="ui-g-12 ui-md-3 ui-lg-4"></div>
+ 
+
+<p:tabView class="ui-g-12 ui-md-6 ui-lg-4 top20 ">
+	<p:tab title="Giriş">
+		
+		<h:form id="girisForm">
+ 			<p:panelGrid columns="1" class="ui-g-12 bottom10">
+	 			<p:inputText placeholder="Mail adresi" class="ui-g-12"	  required="true" requiredMessage="mail bos geçilemez"/>
+	 			<p:inputText placeholder="Parolanız" 	class="ui-g-12"  required="true" requiredMessage="mail bos geçilemez"/>
+	 			<p:commandButton value="Giriş Yap" 		class="ui-g-12"  update="girisForm"/>
+ 			</p:panelGrid>
+ 			 
+ 			<p:messages class="ui-g-12"/>
+ 			
+ 			<p:panelGrid columns="1" class="ui-g-12 bottom10">
+				 <p:commandButton value="Kan Arıyorum" class="ui-g-12"/>
+				 <p:commandButton value="Parolamı Unuttum" class="ui-g-12"/>
+ 		 	</p:panelGrid>
+ 			
+		</h:form>
+	
+		
+	</p:tab>
+	<p:tab title="Kayıt">
+	<h:form id="kayitForm">
+		<p:panelGrid columns="1" class="ui-g-12 bottom10">
+				<p:inputText placeholder="Adınız" class="ui-g-12"	  required="true" requiredMessage="ad boş geçilemez"/>
+				<p:inputText placeholder="Soyadınız" class="ui-g-12"	  required="true" requiredMessage="soyad bos geçilemez"/>
+				<p:inputTextarea placeholder="Adresiniz" class="ui-g-12"	  required="true" requiredMessage="adres bos geçilemez"/>
+				<p:inputText placeholder="Telefon Numaranız" class="ui-g-12"	  required="true" requiredMessage="telefon bos geçilemez"/>
+				<p:selectOneMenu required="true" requiredMessage="Kan Grubunuzu seçiniz..." style="width:90%">
+					<f:selectItem itemLabel="Kan Grubunuz" itemValue="" />
+					<f:selectItem itemLabel="A Rh +" itemValue="a+" />
+					<f:selectItem itemLabel="A Rh -" itemValue="a-" />
+					<f:selectItem itemLabel="AB Rh +" itemValue="ab+" />
+					<f:selectItem itemLabel="AB Rh -" itemValue="ab-" />
+					<f:selectItem itemLabel="B Rh +" itemValue="b+" />
+					<f:selectItem itemLabel="B Rh -" itemValue="b-" />
+					<f:selectItem itemLabel="0 Rh +" itemValue="0+" />
+					<f:selectItem itemLabel="0 Rh -" itemValue="0-" />
+					<f:selectItem itemLabel="" itemValue="" />
+				
+				</p:selectOneMenu>
+	 			<p:inputText placeholder="Mail adresiniz" class="ui-g-12"	  required="true" requiredMessage="mail bos geçilemez"/>
+	 			<p:inputText placeholder="Kullanıcı Parolası" 	class="ui-g-12"  required="true" requiredMessage="parola bos geçilemez"/>
+	 			<p:commandButton value="Kayıt Ol" 		class="ui-g-12"  update="kayitForm"/>
+ 		</p:panelGrid>
+ 		<p:messages/>
+		</h:form>
+	
+	</p:tab>
+
+
+
+
+</p:tabView> 
+
+ 
+ 
+
+
 
 </ui:define>
 </ui:composition>
