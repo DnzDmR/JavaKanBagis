@@ -7,12 +7,12 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:head></h:head>
+<h:head>
+<h:outputStylesheet library="css" name="reset.css"/>
+<h:outputStylesheet library="css" name="grid.css"/>
+<h:outputStylesheet library="css" name="sablon.css"/>
+</h:head>
 <h:body>
-<ui:composition template="/templates/maintemplate.xhtml">
-<ui:define name="title"> Hoşgeldiniz</ui:define>
-<ui:define name="content">
-
 
 <div class="ui-g-12 ui-md-3 ui-lg-4"></div>
  
@@ -67,17 +67,7 @@
 	
 	</p:tab>
 
-
-
-
 </p:tabView> 
-
  
- 
-
-
-
-</ui:define>
-</ui:composition>
 </h:body>
 </html>

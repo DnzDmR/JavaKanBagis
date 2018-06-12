@@ -1,12 +1,15 @@
 package com.deniz.controller;
 
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import com.deniz.crud.BagisciCRUD;
 import com.deniz.model.Bagisci;
+import com.deniz.session.BagisciSession;
 
 @ManagedBean
 @SessionScoped
@@ -104,13 +107,27 @@ public class BagisciController {
 		
 		if(mesaj.getSeverity()==FacesMessage.SEVERITY_INFO)
 		{
-			return "anasayfa";
+			HttpSession session = BagisciSession.getSession();
+			session.setAttribute("eposta",eposta);
+			
+			return "anasayfa.jsf?faces-redirect=true";
 		}
 		else
 		{
 			return "index";
 		}
 		 
+	}
+	
+	
+	public void sessionKontrol()  
+	{
+		if(BagisciSession.getEposta()==null)
+		{
+			try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
+			}catch(Exception e) {e.printStackTrace();}
+		}
 	}
 	
  

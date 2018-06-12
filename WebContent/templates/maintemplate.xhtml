@@ -13,6 +13,10 @@
 <h:outputStylesheet library="css" name="sablon.css" />
 </h:head>
 <h:body>
+<f:metadata>
+<f:event listener="#{bagisciController.sessionKontrol}" type="preRenderView" />
+</f:metadata>
+
 
 <div class="header">
  <ui:insert name="header">
