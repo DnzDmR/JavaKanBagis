@@ -24,7 +24,7 @@ public class Bagisci implements Serializable {
 	private String eposta;
 	private String kangrubu;
 	private String parola;
-	
+	private Integer durum;
 	private static final long serialVersionUID = 1L;
 
 	public Bagisci() {
@@ -93,6 +93,14 @@ public class Bagisci implements Serializable {
 
 	public void setParola(String parola) {
 		this.parola = parola;
+	}
+
+	public Integer getDurum() {
+		return durum;
+	}
+
+	public void setDurum(Integer durum) {
+		this.durum = durum;
 	}   
 	
 	 

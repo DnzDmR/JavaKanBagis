@@ -22,9 +22,9 @@
 		
 		<h:form id="girisForm">
  			<p:panelGrid columns="1" class="ui-g-12 bottom10">
-	 			<p:inputText placeholder="Mail adresi" class="ui-g-12"	  required="true" requiredMessage="mail bos geçilemez"/>
-	 			<p:inputText placeholder="Parolanız" 	class="ui-g-12"  required="true" requiredMessage="mail bos geçilemez"/>
-	 			<p:commandButton value="Giriş Yap" 		class="ui-g-12"  update="girisForm"/>
+	 			<p:inputText placeholder="Mail adresi" class="ui-g-12"  value="#{bagisciController.eposta}"	  required="true" requiredMessage="mail bos geçilemez"/>
+	 			<p:inputText placeholder="Parolanız" 	class="ui-g-12" value="#{bagisciController.parola}"  required="true" requiredMessage="mail bos geçilemez"/>
+	 			<p:commandButton value="Giriş Yap" 	action="#{bagisciController.bagisciGiris}"	class="ui-g-12"  update="girisForm"/>
  			</p:panelGrid>
  			 
  			<p:messages class="ui-g-12"/>

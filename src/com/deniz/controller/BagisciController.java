@@ -20,6 +20,7 @@ public class BagisciController {
 	private String eposta;
 	private String kangrubu;
 	private String parola;
+	private Integer durum;
 	
 	
 	public Integer getId() {
@@ -70,6 +71,12 @@ public class BagisciController {
 	public void setParola(String parola) {
 		this.parola = parola;
 	}
+	public Integer getDurum() {
+		return durum;
+	}
+	public void setDurum(Integer durum) {
+		this.durum = durum;
+	}
 	
 	
 	public void bagisciKayit()
@@ -82,10 +89,31 @@ public class BagisciController {
 		bagisci.setKangrubu(kangrubu);
 		bagisci.setTelefon(telefon);
 		bagisci.setParola(parola);
+		bagisci.setDurum(1);
 		
 		FacesMessage mesaj = BagisciCRUD.bagisciKayit(bagisci);
 		FacesContext.getCurrentInstance().addMessage(null, mesaj);
 	}
+	
+	
+	public String bagisciGiris()
+	{
+		FacesMessage mesaj = BagisciCRUD.bagisciGiris(eposta, parola);
+		
+		FacesContext.getCurrentInstance().addMessage(null, mesaj);
+		
+		if(mesaj.getSeverity()==FacesMessage.SEVERITY_INFO)
+		{
+			return "anasayfa";
+		}
+		else
+		{
+			return "index";
+		}
+		 
+	}
+	
+ 
 	
 
 }
