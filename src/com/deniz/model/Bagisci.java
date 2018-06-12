@@ -1,17 +1,21 @@
-package com.deniz.controller;
+package com.deniz.model;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+import java.io.Serializable;
+import java.lang.Integer;
+import java.lang.String;
+import javax.persistence.*;
 
-import com.deniz.crud.BagisciCRUD;
-import com.deniz.model.Bagisci;
+/**
+ * Entity implementation class for Entity: Bagisci
+ *
+ */
+@Entity
+@Table(name="Bagisci")
+public class Bagisci implements Serializable {
 
-@ManagedBean
-@SessionScoped
-public class BagisciController {
-	
+	   
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String ad;
 	private String soyad;
@@ -21,71 +25,76 @@ public class BagisciController {
 	private String kangrubu;
 	private String parola;
 	
-	
+	private static final long serialVersionUID = 1L;
+
+	public Bagisci() {
+		super();
+	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getAd() {
 		return ad;
 	}
+
 	public void setAd(String ad) {
 		this.ad = ad;
 	}
+
 	public String getSoyad() {
 		return soyad;
 	}
+
 	public void setSoyad(String soyad) {
 		this.soyad = soyad;
 	}
+
 	public String getAdres() {
 		return adres;
 	}
+
 	public void setAdres(String adres) {
 		this.adres = adres;
 	}
+
 	public Long getTelefon() {
 		return telefon;
 	}
+
 	public void setTelefon(Long telefon) {
 		this.telefon = telefon;
 	}
+
 	public String getEposta() {
 		return eposta;
 	}
+
 	public void setEposta(String eposta) {
 		this.eposta = eposta;
 	}
+
 	public String getKangrubu() {
 		return kangrubu;
 	}
+
 	public void setKangrubu(String kangrubu) {
 		this.kangrubu = kangrubu;
 	}
+
 	public String getParola() {
 		return parola;
 	}
+
 	public void setParola(String parola) {
 		this.parola = parola;
-	}
+	}   
 	
-	
-	public void bagisciKayit()
-	{
-		Bagisci bagisci = new Bagisci();
-		bagisci.setAd(ad);
-		bagisci.setAdres(adres);
-		bagisci.setEposta(eposta);
-		bagisci.setSoyad(soyad);
-		bagisci.setKangrubu(kangrubu);
-		bagisci.setTelefon(telefon);
-		bagisci.setParola(parola);
-		
-		FacesMessage mesaj = BagisciCRUD.bagisciKayit(bagisci);
-		FacesContext.getCurrentInstance().addMessage(null, mesaj);
-	}
-	
-
+	 
+   
 }

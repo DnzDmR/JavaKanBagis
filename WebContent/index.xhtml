@@ -41,11 +41,11 @@
 	<p:tab title="Kayıt">
 	<h:form id="kayitForm">
 		<p:panelGrid columns="1" class="ui-g-12 bottom10">
-				<p:inputText placeholder="Adınız" class="ui-g-12"	  required="true" requiredMessage="ad boş geçilemez"/>
-				<p:inputText placeholder="Soyadınız" class="ui-g-12"	  required="true" requiredMessage="soyad bos geçilemez"/>
-				<p:inputTextarea placeholder="Adresiniz" class="ui-g-12"	  required="true" requiredMessage="adres bos geçilemez"/>
-				<p:inputText placeholder="Telefon Numaranız" class="ui-g-12"	  required="true" requiredMessage="telefon bos geçilemez"/>
-				<p:selectOneMenu required="true" requiredMessage="Kan Grubunuzu seçiniz..." style="width:90%">
+				<p:inputText placeholder="Adınız" class="ui-g-12" value="#{bagisciController.ad}" required="true" requiredMessage="ad boş geçilemez"/>
+				<p:inputText placeholder="Soyadınız" class="ui-g-12" value="#{bagisciController.soyad}" required="true" requiredMessage="soyad bos geçilemez"/>
+				<p:inputTextarea placeholder="Adresiniz" class="ui-g-12"	value="#{bagisciController.adres}"	  required="true" requiredMessage="adres bos geçilemez"/>
+				<p:inputText placeholder="Telefon Numaranız" class="ui-g-12" maxlength="11"	value="#{bagisciController.telefon}"  required="true" requiredMessage="telefon bos geçilemez"/>
+				<p:selectOneMenu required="true" requiredMessage="Kan Grubunuzu seçiniz..." style="width:90%" value="#{bagisciController.kangrubu}">
 					<f:selectItem itemLabel="Kan Grubunuz" itemValue="" />
 					<f:selectItem itemLabel="A Rh +" itemValue="a+" />
 					<f:selectItem itemLabel="A Rh -" itemValue="a-" />
@@ -58,9 +58,9 @@
 					<f:selectItem itemLabel="" itemValue="" />
 				
 				</p:selectOneMenu>
-	 			<p:inputText placeholder="Mail adresiniz" class="ui-g-12"	  required="true" requiredMessage="mail bos geçilemez"/>
-	 			<p:inputText placeholder="Kullanıcı Parolası" 	class="ui-g-12"  required="true" requiredMessage="parola bos geçilemez"/>
-	 			<p:commandButton value="Kayıt Ol" 		class="ui-g-12"  update="kayitForm"/>
+	 			<p:inputText placeholder="Mail adresiniz" class="ui-g-12"	  required="true" requiredMessage="mail bos geçilemez" value="#{bagisciController.eposta}"/>
+	 			<p:inputText placeholder="Kullanıcı Parolası" 	class="ui-g-12"  required="true" requiredMessage="parola bos geçilemez" value="#{bagisciController.parola}"/>
+	 			<p:commandButton value="Kayıt Ol"  action="#{bagisciController.bagisciKayit}"		class="ui-g-12"  update="kayitForm"/>
  		</p:panelGrid>
  		<p:messages/>
 		</h:form>
