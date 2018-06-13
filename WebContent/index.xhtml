@@ -20,21 +20,21 @@
 <p:tabView class="ui-g-12 ui-md-6 ui-lg-4 top20 ">
 	<p:tab title="Giriş">
 		
-		<h:form id="girisForm">
+			<h:form id="girisForm">
  			<p:panelGrid columns="1" class="ui-g-12 bottom10">
 	 			<p:inputText placeholder="Mail adresi" class="ui-g-12"  value="#{bagisciController.eposta}"	  required="true" requiredMessage="mail bos geçilemez"/>
 	 			<p:inputText placeholder="Parolanız" 	class="ui-g-12" value="#{bagisciController.parola}"  required="true" requiredMessage="mail bos geçilemez"/>
 	 			<p:commandButton value="Giriş Yap" 	action="#{bagisciController.bagisciGiris}"	class="ui-g-12"  update="girisForm"/>
  			</p:panelGrid>
- 			 
  			<p:messages class="ui-g-12"/>
- 			
- 			<p:panelGrid columns="1" class="ui-g-12 bottom10">
-				 <p:commandButton value="Kan Arıyorum" class="ui-g-12"/>
-				 <p:commandButton value="Parolamı Unuttum" class="ui-g-12"/>
- 		 	</p:panelGrid>
- 			
-		</h:form>	
+ 			 </h:form>	
+ 			 <h:form>
+ 				<p:panelGrid columns="1" class="ui-g-12 bottom10" >
+				 <p:commandButton value="Kan Arıyorum" class="ui-g-12"/>  
+				 <p:commandButton value="Parolamı Unuttum" class="ui-g-12"  update=":form:parolaDetail" oncomplete="PF('parolaDialog').show()"/>
+ 		 		</p:panelGrid>
+ 			</h:form>	
+		
 	
 		
 	</p:tab>
@@ -67,7 +67,23 @@
 	
 	</p:tab>
 
-</p:tabView> 
+</p:tabView>
+
+
+
+<h:form id="form">
+<p:dialog header="Parolamı Unuttum" widgetVar="parolaDialog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+        <p:outputPanel id="parolaDetail" style="text-align:center;">
+            
+            <p:panelGrid columns="1">
+            <p:inputText placeholder="Eposta Adresiniz" required="true" requiredMessage="mail boş geçilemez" />
+            <p:commandButton value="Gönder" class="ui-g-12" update="msg" />
+            <p:messages id="msg"/>
+            </p:panelGrid>
+            
+        </p:outputPanel>
+    </p:dialog>
+ </h:form>
  
 </h:body>
 </html>

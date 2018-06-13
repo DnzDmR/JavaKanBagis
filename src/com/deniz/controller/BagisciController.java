@@ -1,14 +1,16 @@
 package com.deniz.controller;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.Window;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+
+import org.primefaces.context.PrimeFacesContext;
+import org.primefaces.context.PrimeFacesContextFactory;
 
 import com.deniz.crud.BagisciCRUD;
 import com.deniz.model.Bagisci;
@@ -181,6 +183,8 @@ public class BagisciController {
 		sessionDestroy();
 		return "index.jsf?faces-redirect=true";
 	}
+	
+ 
  
 	
 
