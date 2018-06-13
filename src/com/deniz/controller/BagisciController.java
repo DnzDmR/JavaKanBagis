@@ -1,6 +1,9 @@
 package com.deniz.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -110,6 +113,16 @@ public class BagisciController {
 			HttpSession session = BagisciSession.getSession();
 			session.setAttribute("eposta",eposta);
 			
+			Bagisci bagisci =BagisciCRUD.bagisciCek(BagisciSession.getEposta());
+			
+			this.setAd(bagisci.getAd());
+			this.setSoyad(bagisci.getSoyad());
+			this.setAdres(bagisci.getAdres());
+			this.setDurum(bagisci.getDurum());
+			this.setEposta(bagisci.getEposta());
+			this.setKangrubu(bagisci.getKangrubu());
+			this.setTelefon(bagisci.getTelefon());
+			
 			return "anasayfa.jsf?faces-redirect=true";
 		}
 		else
@@ -118,7 +131,6 @@ public class BagisciController {
 		}
 		 
 	}
-	
 	
 	public void sessionKontrol()  
 	{
@@ -130,6 +142,36 @@ public class BagisciController {
 		}
 	}
 	
+	public String sessionDestroy()
+	{
+		BagisciSession.sessionDestroy();
+		return "index.jsf?faces-redirect=true";
+		
+	}
+	
+	public Bagisci kullaniciProfilCek()
+	{
+		return BagisciCRUD.bagisciCek(BagisciSession.getEposta());
+	}
+	
+	
+	public void bagisciGuncelle()
+	{
+		Bagisci eskiBilgi = BagisciCRUD.bagisciCek(BagisciSession.getEposta());
+		Bagisci yeniBilgi = new Bagisci();
+		yeniBilgi.setId(eskiBilgi.getId());
+		yeniBilgi.setAd(ad);
+		yeniBilgi.setSoyad(soyad);
+		yeniBilgi.setAdres(adres);
+		yeniBilgi.setTelefon(telefon);
+		yeniBilgi.setDurum(durum);
+		yeniBilgi.setKangrubu(kangrubu);
+		yeniBilgi.setParola(parola);
+		yeniBilgi.setEposta(eposta);
+		
+		FacesMessage mesaj = BagisciCRUD.bagisciGuncelle(yeniBilgi);
+		FacesContext.getCurrentInstance().addMessage(null, mesaj);
+	}
  
 	
 

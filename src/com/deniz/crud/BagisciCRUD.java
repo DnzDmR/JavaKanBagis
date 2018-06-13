@@ -66,7 +66,7 @@ public class BagisciCRUD {
 	}
 	
 	
-	public static FacesMessage bagisciGuncelle(Bagisci eskiBilgi,Bagisci yeniBilgi)
+	public static FacesMessage bagisciGuncelle(Bagisci yeniBilgi)
 	{
 		EntityManagerFactory mf = Persistence.createEntityManagerFactory(persistenceUnitName);
 		EntityManager em = mf.createEntityManager();
@@ -74,15 +74,8 @@ public class BagisciCRUD {
 		
 		try {
 			ts.begin();
-			eskiBilgi.setAd(yeniBilgi.getAd());
-			eskiBilgi.setSoyad(yeniBilgi.getSoyad());
-			eskiBilgi.setAdres(yeniBilgi.getAdres());
-			eskiBilgi.setDurum(yeniBilgi.getDurum());
-			eskiBilgi.setEposta(yeniBilgi.getEposta());
-			eskiBilgi.setTelefon(yeniBilgi.getTelefon());
-			eskiBilgi.setParola(yeniBilgi.getParola());
+			em.merge(yeniBilgi);
 			ts.commit();
-			
 			return new FacesMessage(FacesMessage.SEVERITY_INFO,"Güncelleme Başarılı",null);
 			
 		}catch (Exception e) {
@@ -127,6 +120,8 @@ public class BagisciCRUD {
 			mf.close();
 		}
 	}
+	
+	
 	
 	
  

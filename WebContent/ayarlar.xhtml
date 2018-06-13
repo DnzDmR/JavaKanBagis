@@ -7,45 +7,25 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:head>
-<h:outputStylesheet library="css" name="reset.css"/>
-<h:outputStylesheet library="css" name="grid.css"/>
-<h:outputStylesheet library="css" name="sablon.css"/>
-</h:head>
+<h:head></h:head>
 <h:body>
+<ui:composition template="/templates/maintemplate.xhtml">
+<ui:define name="title"> Ayarlar</ui:define>
+<ui:define name="content">
 
-<div class="ui-g-12 ui-md-3 ui-lg-4"></div>
- 
-
-<p:tabView class="ui-g-12 ui-md-6 ui-lg-4 top20 ">
-	<p:tab title="Giriş">
-		
-		<h:form id="girisForm">
- 			<p:panelGrid columns="1" class="ui-g-12 bottom10">
-	 			<p:inputText placeholder="Mail adresi" class="ui-g-12"  value="#{bagisciController.eposta}"	  required="true" requiredMessage="mail bos geçilemez"/>
-	 			<p:inputText placeholder="Parolanız" 	class="ui-g-12" value="#{bagisciController.parola}"  required="true" requiredMessage="mail bos geçilemez"/>
-	 			<p:commandButton value="Giriş Yap" 	action="#{bagisciController.bagisciGiris}"	class="ui-g-12"  update="girisForm"/>
- 			</p:panelGrid>
- 			 
- 			<p:messages class="ui-g-12"/>
- 			
- 			<p:panelGrid columns="1" class="ui-g-12 bottom10">
-				 <p:commandButton value="Kan Arıyorum" class="ui-g-12"/>
-				 <p:commandButton value="Parolamı Unuttum" class="ui-g-12"/>
- 		 	</p:panelGrid>
- 			
-		</h:form>	
-	
-		
-	</p:tab>
-	<p:tab title="Kayıt">
-	<h:form id="kayitForm">
-		<p:panelGrid columns="1" class="ui-g-12 bottom10">
+<p:panel header="Bağışçı Bilgileri" styleClass="top20">
+<h:form id="guncellemeForm">
+<p:panelGrid columns="2">
+				<p:outputLabel value="Adınız" />
 				<p:inputText placeholder="Adınız" class="ui-g-12" value="#{bagisciController.ad}" required="true" requiredMessage="ad boş geçilemez"/>
+				<p:outputLabel value="Soyadınız" />
 				<p:inputText placeholder="Soyadınız" class="ui-g-12" value="#{bagisciController.soyad}" required="true" requiredMessage="soyad bos geçilemez"/>
+				<p:outputLabel value="Adresiniz" />
 				<p:inputTextarea placeholder="Adresiniz" class="ui-g-12"	value="#{bagisciController.adres}"	  required="true" requiredMessage="adres bos geçilemez"/>
+				<p:outputLabel value="Telefon Numaranız" />
 				<p:inputText placeholder="Telefon Numaranız" class="ui-g-12" maxlength="11"	value="#{bagisciController.telefon}"  required="true" requiredMessage="telefon bos geçilemez"/>
-				<p:selectOneMenu required="true" requiredMessage="Kan Grubunuzu seçiniz..." style="width:90%" value="#{bagisciController.kangrubu}">
+				<p:outputLabel value="Kan Grubunuz" />
+				<p:selectOneMenu required="true" requiredMessage="Kan Grubunuzu seçiniz..." style="width:85%" value="#{bagisciController.kangrubu}">
 					<f:selectItem itemLabel="Kan Grubunuz" itemValue="" />
 					<f:selectItem itemLabel="A Rh +" itemValue="a+" />
 					<f:selectItem itemLabel="A Rh -" itemValue="a-" />
@@ -58,16 +38,25 @@
 					<f:selectItem itemLabel="" itemValue="" />
 				
 				</p:selectOneMenu>
+				
+				<p:outputLabel value="Eposta adresiniz" />
 	 			<p:inputText placeholder="Mail adresiniz" class="ui-g-12"	  required="true" requiredMessage="mail bos geçilemez" value="#{bagisciController.eposta}"/>
-	 			<p:inputText placeholder="Kullanıcı Parolası" 	class="ui-g-12"  required="true" requiredMessage="parola bos geçilemez" value="#{bagisciController.parola}"/>
-	 			<p:commandButton value="Kayıt Ol"  action="#{bagisciController.bagisciKayit}"		class="ui-g-12"  update="kayitForm"/>
- 		</p:panelGrid>
- 		<p:messages/>
-		</h:form>
-	
-	</p:tab>
+	 			<p:outputLabel value="Parolanız" />
+	 			
+	 			<p:inputText placeholder="Kullanıcı Parolası" 	class="ui-g-12"  required="true" requiredMessage="parola bos geçilemez" value="#{bagisciController.parola}" />
+				
+				<p:outputLabel />
+				<p:commandButton value="Güncelle"  class="ui-g-12" update="guncellemeForm" action="#{bagisciController.bagisciGuncelle}" />
 
-</p:tabView> 
+</p:panelGrid>
+<p:messages />
+</h:form>
+</p:panel>
  
+
+
+
+</ui:define>
+</ui:composition>
 </h:body>
 </html>
