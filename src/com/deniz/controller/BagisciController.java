@@ -184,7 +184,22 @@ public class BagisciController {
 		return "index.jsf?faces-redirect=true";
 	}
 	
- 
+	public void mailGonder()
+	{
+		Bagisci bagisci = BagisciCRUD.bagisciCek(eposta);
+		FacesMessage mesaj;
+		if(bagisci==null)
+		{
+			mesaj = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Kayıt Bir eposta Girmediniz",null);
+		}
+		else
+		{
+			mesaj = BagisciCRUD.mailGonder(eposta,bagisci.getParola());	
+		}
+		
+		FacesContext.getCurrentInstance().addMessage(null, mesaj);
+		
+	}
  
 	
 

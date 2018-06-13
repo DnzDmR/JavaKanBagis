@@ -76,14 +76,19 @@
         <p:outputPanel id="parolaDetail" style="text-align:center;">
             
             <p:panelGrid columns="1">
-            <p:inputText placeholder="Eposta Adresiniz" required="true" requiredMessage="mail boş geçilemez" />
-            <p:commandButton value="Gönder" class="ui-g-12" update="msg" />
-            <p:messages id="msg"/>
+            <p:inputText placeholder="Eposta Adresiniz" required="true" value="#{bagisciController.eposta}" requiredMessage="mail boş geçilemez" />
+            <p:commandButton value="Gönder" class="ui-g-12" update="msg" action="#{bagisciController.mailGonder()}" />
+        
             </p:panelGrid>
-            
+             <p:messages id="msg"/>
         </p:outputPanel>
     </p:dialog>
  </h:form>
  
+ 
+<h:form>
+
+
+</h:form> 
 </h:body>
 </html>
