@@ -97,7 +97,7 @@ public class BagisciCRUD {
 		EntityTransaction ts = em.getTransaction();
 		
 		try {
-			Query sorgu = em.createQuery("Select b from Bagisci b where b.eposta=:eposta and b.parola=:parola");
+			Query sorgu = em.createQuery("Select b from Bagisci b where b.eposta=:eposta and b.parola=:parola and b.durum=1");
 			sorgu.setParameter("eposta", eposta);
 			sorgu.setParameter("parola", parola);
 			
@@ -119,6 +119,34 @@ public class BagisciCRUD {
 			em.close();
 			mf.close();
 		}
+	}
+	
+	public static void bagisciSil(Integer id)
+	{
+		EntityManagerFactory mf = Persistence.createEntityManagerFactory(persistenceUnitName);
+		EntityManager em = mf.createEntityManager();
+		EntityTransaction ts = em.getTransaction();
+		
+		
+		try {
+			ts.begin();
+			
+			Bagisci bagisci = em.find(Bagisci.class, id);
+			bagisci.setDurum(0);
+			em.merge(bagisci);
+			
+			ts.commit();
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			em.close();
+			mf.close();
+		}
+			
+		
 	}
 	
 	

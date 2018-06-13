@@ -45,8 +45,10 @@
 	 			
 	 			<p:inputText placeholder="Kullanıcı Parolası" 	class="ui-g-12"  required="true" requiredMessage="parola bos geçilemez" value="#{bagisciController.parola}" />
 				
-				<p:outputLabel />
+				<p:outputLabel/>
 				<p:commandButton value="Güncelle"  class="ui-g-12" update="guncellemeForm" action="#{bagisciController.bagisciGuncelle}" />
+				<p:outputLabel/>
+				<p:commandButton  value="Hesap Sil" class="ui-g-12" action="#{bagisciController.bagisciSil}" />
 
 </p:panelGrid>
 <p:messages />

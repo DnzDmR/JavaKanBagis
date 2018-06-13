@@ -115,6 +115,7 @@ public class BagisciController {
 			
 			Bagisci bagisci =BagisciCRUD.bagisciCek(BagisciSession.getEposta());
 			
+			this.setId(bagisci.getId());
 			this.setAd(bagisci.getAd());
 			this.setSoyad(bagisci.getSoyad());
 			this.setAdres(bagisci.getAdres());
@@ -171,6 +172,14 @@ public class BagisciController {
 		
 		FacesMessage mesaj = BagisciCRUD.bagisciGuncelle(yeniBilgi);
 		FacesContext.getCurrentInstance().addMessage(null, mesaj);
+	}
+	
+	
+	public String bagisciSil()
+	{
+		BagisciCRUD.bagisciSil(id);
+		sessionDestroy();
+		return "index.jsf?faces-redirect=true";
 	}
  
 	
