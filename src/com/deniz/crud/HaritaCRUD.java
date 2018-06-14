@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.management.modelmbean.ModelMBeanAttributeInfo;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -31,7 +32,7 @@ public class HaritaCRUD {
 		MapModel haritaModel = new DefaultMapModel();
 		try
 		{
-			Query sorgu = em.createQuery("Select h from Harita h where h.bagisiciId=:id order by h.id desc");
+			Query sorgu = em.createQuery("Select h from Harita h where h.bagisciId=:id order by h.id desc");
 			sorgu.setParameter("id", id);
 			
 			List<Harita> harita = new ArrayList<Harita>(); 
@@ -63,9 +64,22 @@ public class HaritaCRUD {
 		EntityTransaction ts =em.getTransaction();
 		
 		try {
-				
+			
+			Query sorgu = em.createQuery("Select h from Harita h where bagisciId=:bagisciId");
+			sorgu.setParameter("bagisciId", harita.getBagisciId());
+			
 			ts.begin();
-			em.persist(harita);
+			if(sorgu.getResultList().size()>0)
+			{
+				List<Harita> liste = sorgu.getResultList();
+				harita.setID(liste.get(0).getID());
+				em.merge(harita);
+			}
+			else	
+			{
+				em.persist(harita);
+			}
+			
 			ts.commit();
 			
 			
@@ -78,6 +92,44 @@ public class HaritaCRUD {
 			em.close();
 			mf.close();
 		}
+	}
+	
+	
+	public static MapModel kanGrubuArama(String kanGrubu)
+	{
+		EntityManagerFactory mf = Persistence.createEntityManagerFactory(persistenceUnitName);
+		EntityManager em = mf.createEntityManager();
+		EntityTransaction ts =em.getTransaction();
+		
+		try {
+			
+			Query sorgu = em.createQuery("Select h from Harita h inner join Bagisci b on b.id = h.bagisciId where b.kangrubu=:kangrubu");
+			sorgu.setParameter("kangrubu", kanGrubu);
+			
+			List<Harita> liste = sorgu.getResultList();
+			ArrayList<LatLng> noktalar = new ArrayList<LatLng>();
+			MapModel tempModel = new DefaultMapModel();
+			
+			if(liste.size()>0)
+			{
+				for(Harita harita :liste)
+				{
+					LatLng a = new LatLng(harita.getEnlem(), harita.getBoylam());
+					tempModel.addOverlay(new Marker(a,harita.getAciklama()));
+				}
+				
+			}			
+			return tempModel;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			em.close();
+			mf.close();
+		}
+		
+		
 	}
 
 }

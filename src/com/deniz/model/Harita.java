@@ -23,7 +23,7 @@ public class Harita implements Serializable {
 	private Double boylam;
 	private String aciklama;
 	@Column(name="bagisci_id")
-	private Integer bagisiciId;
+	private Integer bagisciId;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -40,11 +40,11 @@ public class Harita implements Serializable {
 	public void setID(Integer iD) {
 		ID = iD;
 	}
-	public Integer getBagisiciId() {
-		return bagisiciId;
+	public Integer getBagisciId() {
+		return bagisciId;
 	}
-	public void setBagisiciId(Integer bagisiciId) {
-		this.bagisiciId = bagisiciId;
+	public void setBagisciId(Integer bagisciId) {
+		this.bagisciId = bagisciId;
 	}
 	public Double getEnlem() {
 		return this.enlem;

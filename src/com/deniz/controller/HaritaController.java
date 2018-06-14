@@ -24,9 +24,15 @@ public class HaritaController {
 	
     private MapModel tempModel;
     private String mevcutKonum="39.920697210705406,32.854013442993164";
-    
+    private String arananKanGrubu;
     
    
+	public String getArananKanGrubu() {
+		return arananKanGrubu;
+	}
+	public void setArananKanGrubu(String arananKanGrubu) {
+		this.arananKanGrubu = arananKanGrubu;
+	}
 	public String getMevcutKonum() {
 		return mevcutKonum;
 	}
@@ -79,7 +85,7 @@ public class HaritaController {
 			harita.setAciklama(aciklama);
 			harita.setBoylam(boylam);
 			harita.setEnlem(enlem);
-			harita.setBagisiciId(bagisci.getId());
+			harita.setBagisciId(bagisci.getId());
 			
 			mevcutKonum = ""+enlem+","+boylam;
 			
@@ -98,6 +104,12 @@ public class HaritaController {
 				
 		}
 				
+	}
+	
+	
+	public void kanGrubuArama()
+	{
+		tempModel=HaritaCRUD.kanGrubuArama(arananKanGrubu);
 	}
 	
 

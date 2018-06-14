@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+<title>Kan Bağışı Sorgulama</title>
+<h:outputStylesheet library="css" name="reset.css"/>
+<h:outputStylesheet library="css" name="grid.css"/>
+<h:outputStylesheet library="css" name="sablon.css"/>
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	<script src="http://maps.google.com/maps/api/js?key=AIzaSyAlcYYFTcoM86oHid_BP_2bPPlqKGth5DQ" type="text/javascript"></script>
+</h:head>
+<h:body>
+
+ <p:panel  header="Kan Arama Paneli"  styleClass="top20">
+ 
+ <h:form>
+ <h:panelGrid columns="1" >
+	<p:selectOneMenu required="true" requiredMessage="Kan Grubunuzu seçiniz..."  value="#{haritaController.arananKanGrubu}">
+					<f:selectItem itemLabel="Aranan Kan Grubu" itemValue="" />
+					<f:selectItem itemLabel="A Rh +" itemValue="a+" />
+					<f:selectItem itemLabel="A Rh -" itemValue="a-" />
+					<f:selectItem itemLabel="AB Rh +" itemValue="ab+" />
+					<f:selectItem itemLabel="AB Rh -" itemValue="ab-" />
+					<f:selectItem itemLabel="B Rh +" itemValue="b+" />
+					<f:selectItem itemLabel="B Rh -" itemValue="b-" />
+					<f:selectItem itemLabel="0 Rh +" itemValue="0+" />
+					<f:selectItem itemLabel="0 Rh -" itemValue="0-" />
+					<f:selectItem itemLabel="" itemValue="" />
+				
+	</p:selectOneMenu>
+	<p:commandButton value="Ara"  action="#{haritaController.kanGrubuArama}" update="gmap" />
+  </h:panelGrid>
+  
+ <h:panelGrid columns="1" styleClass="top10" >
+ <p:outputLabel value="Sistemde kayıtlı olan kan bağışçılarını bu haritadan arama yaparak bulabilirsiniz."  />
+ <p:outputLabel value="Sizde kan bağışında bulunmak istiyor sistemimize aşağıdaki linkten kayıt olabilirsiniz. " />
+ <p:link href="index.jsf">KAYIT OL</p:link>
+ </h:panelGrid>
+ 	 
+  <p:gmap id="gmap" center="39.920697210705406,32.854013442993164" zoom="5" styleClass="top20" type="HYBRID" style="width:100%;height:400px"
+    model="#{haritaController.tempModel}" onPointClick="handlePointClick(event);" widgetVar="map" />
+  </h:form>
+ 
+ 
+ 
+ </p:panel>
+
+ 
+</h:body>
+</html>
