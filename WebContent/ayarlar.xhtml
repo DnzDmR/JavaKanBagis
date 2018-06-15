@@ -18,12 +18,12 @@
 <p:panelGrid columns="2">
 				<p:outputLabel value="Adınız" />
 				<p:inputText placeholder="Adınız" class="ui-g-12" value="#{bagisciController.ad}" required="true" requiredMessage="ad boş geçilemez" validatorMessage="Adınız harflerden oluşmalıdır">
-					  <f:validateRegex pattern="^[a-zA-Z]+$" />
+					  <f:validateRegex pattern="^[\p{L}+a-zA-Z]+$" />
 				</p:inputText>
 				
 				<p:outputLabel value="Soyadınız" />
 				<p:inputText placeholder="Soyadınız" class="ui-g-12" value="#{bagisciController.soyad}" required="true" requiredMessage="soyad bos geçilemez" validatorMessage="Soyadınız harflerden oluşmalıdır">
-					  <f:validateRegex pattern="^[a-zA-Z]+$" />
+					  <f:validateRegex pattern="^[\p{L}+a-zA-Z]+$" />
 				</p:inputText>
 				
 				<p:outputLabel value="Adresiniz" />

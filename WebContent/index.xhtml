@@ -44,12 +44,12 @@
 	<h:form id="kayitForm">
 		<p:panelGrid columns="1" class="ui-g-12 bottom10">
 				<p:inputText placeholder="Adınız" class="ui-g-12" value="#{bagisciController.ad}" required="true" requiredMessage="ad boş geçilemez" validatorMessage="Adınız harflerden oluşmalıdır">
-				  <f:validateRegex pattern="^[a-zA-Z]+$" />
+				  <f:validateRegex pattern="^[\p{L}+a-zA-Z]+$" />
 				</p:inputText>
 				
 				
 				<p:inputText placeholder="Soyadınız" class="ui-g-12" value="#{bagisciController.soyad}" required="true" requiredMessage="soyad bos geçilemez" validatorMessage="Soyadınız harflerden oluşmalıdır">
-				<f:validateRegex pattern="^[a-zA-Z]+$" />
+				<f:validateRegex pattern="^[\p{L}+a-zA-Z]+$" />
 				</p:inputText>
 				
 				<p:inputTextarea placeholder="Adresiniz" class="ui-g-12"	value="#{bagisciController.adres}"	  required="true" requiredMessage="adres bos geçilemez" validatorMessage="100 karaterden fazla adres girilemez">
