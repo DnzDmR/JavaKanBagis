@@ -17,13 +17,23 @@
 <h:form id="guncellemeForm">
 <p:panelGrid columns="2">
 				<p:outputLabel value="Adınız" />
-				<p:inputText placeholder="Adınız" class="ui-g-12" value="#{bagisciController.ad}" required="true" requiredMessage="ad boş geçilemez"/>
+				<p:inputText placeholder="Adınız" class="ui-g-12" value="#{bagisciController.ad}" required="true" requiredMessage="ad boş geçilemez" validatorMessage="Adınız harflerden oluşmalıdır">
+					  <f:validateRegex pattern="^[a-zA-Z]+$" />
+				</p:inputText>
+				
 				<p:outputLabel value="Soyadınız" />
-				<p:inputText placeholder="Soyadınız" class="ui-g-12" value="#{bagisciController.soyad}" required="true" requiredMessage="soyad bos geçilemez"/>
+				<p:inputText placeholder="Soyadınız" class="ui-g-12" value="#{bagisciController.soyad}" required="true" requiredMessage="soyad bos geçilemez" validatorMessage="Soyadınız harflerden oluşmalıdır">
+					  <f:validateRegex pattern="^[a-zA-Z]+$" />
+				</p:inputText>
+				
 				<p:outputLabel value="Adresiniz" />
-				<p:inputTextarea placeholder="Adresiniz" class="ui-g-12"	value="#{bagisciController.adres}"	  required="true" requiredMessage="adres bos geçilemez"/>
+				<p:inputTextarea placeholder="Adresiniz" class="ui-g-12"	value="#{bagisciController.adres}"	  required="true" requiredMessage="adres bos geçilemez" validatorMessage="Adresiniz 100 karakterden oluşmalıdır">
+					<f:validateLength  maximum="100"/>
+				</p:inputTextarea>
+				
 				<p:outputLabel value="Telefon Numaranız" />
 				<p:inputText placeholder="Telefon Numaranız" class="ui-g-12" maxlength="11"	value="#{bagisciController.telefon}"  required="true" requiredMessage="telefon bos geçilemez"/>
+				
 				<p:outputLabel value="Kan Grubunuz" />
 				<p:selectOneMenu required="true" requiredMessage="Kan Grubunuzu seçiniz..." style="width:85%" value="#{bagisciController.kangrubu}">
 					<f:selectItem itemLabel="Kan Grubunuz" itemValue="" />
@@ -40,9 +50,11 @@
 				</p:selectOneMenu>
 				
 				<p:outputLabel value="Eposta adresiniz" />
-	 			<p:inputText placeholder="Mail adresiniz" class="ui-g-12"	  required="true" requiredMessage="mail bos geçilemez" value="#{bagisciController.eposta}"/>
-	 			<p:outputLabel value="Parolanız" />
+	 			<p:inputText placeholder="Mail adresiniz" class="ui-g-12"	  required="true" requiredMessage="mail bos geçilemez" value="#{bagisciController.eposta}" validatorMessage="Geçerli bir eposta girmediniz">
+	 				<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+	 			</p:inputText>
 	 			
+	 			<p:outputLabel value="Parolanız" />
 	 			<p:inputText placeholder="Kullanıcı Parolası" 	class="ui-g-12"  required="true" requiredMessage="parola bos geçilemez" value="#{bagisciController.parola}" />
 				
 				<p:outputLabel/>
