@@ -2,10 +2,13 @@ package com.deniz.controller;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 import com.deniz.crud.BagisciCRUD;
 import com.deniz.crud.HaritaCRUD;
@@ -14,6 +17,7 @@ import com.deniz.model.Harita;
 import com.deniz.session.BagisciSession;
 
 @ManagedBean
+@SessionScoped
 public class HaritaController {
 	
 	private Integer id;
@@ -25,8 +29,23 @@ public class HaritaController {
     private MapModel tempModel;
     private String mevcutKonum="39.920697210705406,32.854013442993164";
     private String arananKanGrubu;
+    private Marker nokta;
+    private Bagisci arananBagisci;
     
    
+    
+	public Bagisci getArananBagisci() {
+		return arananBagisci;
+	}
+	public void setArananBagisci(Bagisci arananBagisci) {
+		this.arananBagisci = arananBagisci;
+	}
+	public Marker getNokta() {
+		return nokta;
+	}
+	public void setNokta(Marker nokta) {
+		this.nokta = nokta;
+	}
 	public String getArananKanGrubu() {
 		return arananKanGrubu;
 	}
@@ -111,6 +130,13 @@ public class HaritaController {
 	{
 		tempModel=HaritaCRUD.kanGrubuArama(arananKanGrubu);
 	}
+	
+	public void noktaSecimi(OverlaySelectEvent event) 
+	{
+	        nokta = (Marker) event.getOverlay();
+	        arananBagisci = HaritaCRUD.secilenBagisciCek(nokta.getLatlng().getLat(), nokta.getLatlng().getLng());
+	}
+	      
 	
 
 }

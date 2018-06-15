@@ -1,7 +1,6 @@
 package com.deniz.crud;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Properties;
 
 import javax.faces.application.FacesMessage;
@@ -15,7 +14,6 @@ import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 

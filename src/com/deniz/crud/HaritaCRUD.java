@@ -16,6 +16,7 @@ import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 
+import com.deniz.model.Bagisci;
 import com.deniz.model.Harita;
 
 public class HaritaCRUD {
@@ -131,5 +132,41 @@ public class HaritaCRUD {
 		
 		
 	}
+	
+	public static Bagisci secilenBagisciCek(Double lat ,Double lng)
+	{
+		EntityManagerFactory mf = Persistence.createEntityManagerFactory(persistenceUnitName);
+		EntityManager em = mf.createEntityManager();
+		EntityTransaction ts = em.getTransaction();
+		
+		
+		try {
+			Query sorgu = em.createQuery("Select b from Harita h inner join Bagisci b on b.id = h.bagisciId where h.enlem=:lat and h.boylam=:lng ");
+			sorgu.setParameter("lat", lat);
+			sorgu.setParameter("lng", lng);
+			
+			List<Bagisci> bagisci = sorgu.getResultList();
+			
+			return bagisci.get(0);
+					
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			em.close();
+			mf.close();
+		}
+		
+		
+			
+		
+		
+		
+	}
+	
+	
+	
 
 }

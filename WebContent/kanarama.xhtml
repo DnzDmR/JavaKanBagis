@@ -40,11 +40,35 @@
  <h:panelGrid columns="1" styleClass="top10" >
  <p:outputLabel value="Sistemde kayıtlı olan kan bağışçılarını bu haritadan arama yaparak bulabilirsiniz."  />
  <p:outputLabel value="Sizde kan bağışında bulunmak istiyor sistemimize aşağıdaki linkten kayıt olabilirsiniz. " />
- <p:link href="index.jsf">KAYIT OL</p:link>
+ <p:link href="index.jsf">KAYIT OL / ANASAYFA</p:link>
+ 
  </h:panelGrid>
  	 
   <p:gmap id="gmap" center="39.920697210705406,32.854013442993164" zoom="5" styleClass="top20" type="HYBRID" style="width:100%;height:400px"
-    model="#{haritaController.tempModel}" onPointClick="handlePointClick(event);" widgetVar="map" />
+    model="#{haritaController.tempModel}" onPointClick="handlePointClick(event);" widgetVar="map"  >
+    
+            <p:ajax event="overlaySelect" listener="#{haritaController.noktaSecimi}" /> 
+            
+            <p:gmapInfoWindow id="infoWindow">
+            <p:outputPanel style="text-align: center; display: block; margin: auto">
+ 
+                <ui:repeat var="row" value="#{haritaController.arananBagisci}">
+                <p:panelGrid columns="1">
+                <h:outputText  value="#{row.ad}"/>
+                <h:outputText  value="#{row.soyad}"/>
+                <h:outputText  value="#{row.telefon}"/>
+                <h:outputText  value="#{row.adres}"/>
+                <h:outputText  value="#{row.eposta}"/>
+                <h:outputText  value="#{row.kangrubu}"/>
+                </p:panelGrid>
+                </ui:repeat>
+ 
+            </p:outputPanel>
+        </p:gmapInfoWindow>
+            
+            
+  </p:gmap>
+  <p:messages/>
   </h:form>
  
  
